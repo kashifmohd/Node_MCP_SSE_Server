@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+
+    environment:
+      - NODE_ENV=production
+      - BRAVE_API_KEY=${BRAVE_API_KEY}
+    restart: unless-stopped 
