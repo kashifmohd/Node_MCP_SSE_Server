@@ -40,7 +40,7 @@ server.tool(
         ],
       };
     }
-    const geoData = await geoRes.json();
+    const geoData = await geoRes.json() as { results?: Array<{ latitude: number, longitude: number, name: string, country: string }> };
     if (!geoData.results || geoData.results.length === 0) {
       return {
         content: [
@@ -61,7 +61,7 @@ server.tool(
         ],
       };
     }
-    const weatherData = await weatherRes.json();
+    const weatherData = await weatherRes.json() as { current_weather?: { temperature: number, windspeed: number, weathercode: number } };
     if (!weatherData.current_weather) {
       return {
         content: [
@@ -106,7 +106,7 @@ server.tool(
       throw new Error(`Brave search failed: ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as { web?: { results?: any[] } };
     return {
       content: [
         {
